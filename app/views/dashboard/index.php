@@ -15,7 +15,8 @@
         <h3>Gerenciar:</h3>
         <ul>
             <li><a href="?page=produtos">Estoque de Produtos</a></li>
-            </ul>
+            <li><a href="?page=categorias">Categorias de Produtos</a></li>
+        </ul>
     </nav>
     
     <br>

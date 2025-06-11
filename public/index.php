@@ -89,7 +89,44 @@ switch ($page) {
         excluirProdutoController($pdo);
         break;
 
+    case 'categorias':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'CategoriaController.php';
+        listarCategorias($pdo);
+        break;
+    
+    case 'categorias_novo':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'CategoriaController.php';
+        exibirFormularioCadastroCategoria($pdo);
+        break;
+    
+    case 'categorias_salvar':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'CategoriaController.php';
+        salvarNovaCategoria($pdo);
+        break;
+    
+    case 'categorias_editar':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'CategoriaController.php';
+        exibirFormularioEdicaoCategoria($pdo);
+        break;
+        
+    case 'categorias_atualizar':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'CategoriaController.php';
+        atualizarCategoriaController($pdo);
+        break;
+
+    case 'categorias_excluir':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'CategoriaController.php';
+        excluirCategoriaController($pdo);
+        break;
+
     default:
         include VIEW_PATH . '404.php';
         break;
+    
 }

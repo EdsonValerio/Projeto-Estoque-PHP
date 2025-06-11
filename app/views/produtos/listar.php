@@ -48,6 +48,7 @@
             ?>
         </tbody>
     </table>
-
+    <br>
+    <a href="?page=dashboard">Voltar ao Painel</a>
 </body>
 </html>
