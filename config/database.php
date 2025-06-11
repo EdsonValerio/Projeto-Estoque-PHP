@@ -4,8 +4,8 @@
 
 // --- Configurações do Banco de Dados ---
 // Essas são as credenciais para acessar o seu banco de dados MySQL via XAMPP.
-$host = 'localhost:3307';      // O servidor do banco de dados (geralmente 'localhost' no XAMPP)
-$dbname = 'banco_estoque';   // O nome do banco de dados que criamos
+$host = 'localhost:3306';      // O servidor do banco de dados (geralmente 'localhost' no XAMPP)
+$dbname = 'estoque_db';   // O nome do banco de dados que criamos
 $user = 'root';           // O usuário padrão do MySQL no XAMPP
 $pass = '';               // A senha padrão do MySQL no XAMPP é vazia
 $charset = 'utf8mb4';     // Conjunto de caracteres para garantir compatibilidade com acentos e emojis

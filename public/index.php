@@ -125,6 +125,42 @@ switch ($page) {
         excluirCategoriaController($pdo);
         break;
 
+    case 'usuarios':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'UsuarioController.php';
+        listarUsuarios($pdo);
+        break;
+
+    case 'usuarios_novo':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'UsuarioController.php';
+        exibirFormularioCadastroUsuario($pdo);
+        break;
+
+    case 'usuarios_salvar':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'UsuarioController.php';
+        salvarNovoUsuario($pdo);
+        break;
+
+    case 'usuarios_editar':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'UsuarioController.php';
+        exibirFormularioEdicaoUsuario($pdo);
+        break;
+
+    case 'usuarios_atualizar':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'UsuarioController.php';
+        atualizarUsuarioController($pdo);
+        break;
+
+    case 'usuarios_excluir':
+        if (!isset($_SESSION['user_id'])) { header('Location: ?page=login&error=auth'); exit; }
+        require_once CONTROLLER_PATH . 'UsuarioController.php';
+        excluirUsuarioController($pdo);
+        break;
+
     default:
         include VIEW_PATH . '404.php';
         break;

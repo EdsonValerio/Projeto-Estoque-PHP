@@ -1,57 +1,130 @@
 <?php
 
-// Arquivo: app/controllers/UsuarioController.php
+require_once BASE_PATH . '/app/models/UsuarioModel.php';
 
-/**
- * Função para lidar com a submissão do formulário de login.
- */
 function handleLogin($pdo)
 {
-    // 1. Verificar se o método de requisição é POST
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        // Se não for POST, redireciona para a página de login
         header('Location: ?page=login');
         exit;
     }
 
-    // 2. Obter os dados do formulário
     $login = trim($_POST['login']);
     $senha = trim($_POST['senha']);
 
-    // Validação básica
     if (empty($login) || empty($senha)) {
-        // Redireciona de volta com erro se campos estiverem vazios
         header('Location: ?page=login&error=empty');
         exit;
     }
 
     try {
-        // 3. Buscar o usuário no banco de dados pelo login
         $sql = "SELECT id_usuario, login, senha_hash, nivel_acesso FROM usuarios WHERE login = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$login]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // 4. Verificar se o usuário existe e se a senha está correta
         if ($user && password_verify($senha, $user['senha_hash'])) {
-            // Senha correta! Iniciar a sessão.
             $_SESSION['user_id'] = $user['id_usuario'];
             $_SESSION['user_login'] = $user['login'];
             $_SESSION['user_level'] = $user['nivel_acesso'];
 
-            // 5. Redirecionar para o painel (dashboard)
             header('Location: ?page=dashboard');
             exit;
         } else {
-            // Usuário não encontrado ou senha incorreta
             header('Location: ?page=login&error=invalid');
             exit;
         }
     } catch (PDOException $e) {
-        // Em caso de erro no banco, redireciona com um erro genérico
-        // Idealmente, registrar o erro em um log.
         header('Location: ?page=login&error=db');
         exit;
     }
+}
+
+function listarUsuarios($pdo)
+{
+    $listaDeUsuarios = listarTodosUsuarios($pdo);
+    require_once VIEW_PATH . 'usuarios/listar.php';
+}
+
+function exibirFormularioCadastroUsuario($pdo)
+{
+    $niveisAcesso = [
+        1 => 'Funcionário',
+        2 => 'Dono',
+        3 => 'Admin'
+    ];
+    require_once VIEW_PATH . 'usuarios/novo.php';
+}
+
+function salvarNovoUsuario($pdo)
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $dadosUsuario = [
+            'nome_completo' => trim($_POST['nome_completo']),
+            'login' => trim($_POST['login']),
+            'senha' => $_POST['senha'],
+            'nivel_acesso' => (int)$_POST['nivel_acesso']
+        ];
+
+        if (empty($dadosUsuario['nome_completo']) || empty($dadosUsuario['login']) || empty($dadosUsuario['senha']) || empty($dadosUsuario['nivel_acesso'])) {
+            header('Location: ?page=usuarios_novo&error=empty_fields');
+            exit;
+        }
+
+        cadastrarUsuario($pdo, $dadosUsuario);
+        header('Location: ?page=usuarios');
+        exit;
+    }
+}
+
+function exibirFormularioEdicaoUsuario($pdo)
+{
+    $id = $_GET['id'];
+    $usuario = buscarUsuarioPorId($pdo, $id);
+
+    $niveisAcesso = [
+        1 => 'Funcionário',
+        2 => 'Dono',
+        3 => 'Admin'
+    ];
+
+    if (!$usuario) {
+        header('Location: ?page=usuarios&error=not_found');
+        exit;
+    }
+    require_once VIEW_PATH . 'usuarios/editar.php';
+}
+
+function atualizarUsuarioController($pdo)
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id_usuario'];
+        $dadosParaAtualizar = [
+            'nome_completo' => trim($_POST['nome_completo']),
+            'login' => trim($_POST['login']),
+            'nivel_acesso' => (int)$_POST['nivel_acesso']
+        ];
+
+        if (!empty($_POST['senha'])) {
+            $dadosParaAtualizar['senha'] = $_POST['senha'];
+        }
+
+        atualizarUsuario($pdo, $id, $dadosParaAtualizar);
+        header('Location: ?page=usuarios');
+        exit;
+    }
+}
+
+function excluirUsuarioController($pdo)
+{
+    $id = $_GET['id'];
+    if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $id) {
+        header('Location: ?page=usuarios&error=self_delete');
+        exit;
+    }
+
+    excluirUsuario($pdo, $id);
+    header('Location: ?page=usuarios');
+    exit;
 }
