@@ -31,6 +31,10 @@ function salvarNovoProduto($pdo)
 {
     // Verifica se a requisição foi feita via POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!validarTokenCSRF($_POST['csrf_token'] ?? '')) {
+        die('Falha na verificação de segurança (CSRF).');
+    }
+
         // Pega os dados do formulário
         $dadosProduto = [
             'nome_produto' => $_POST['nome_produto'],
@@ -78,6 +82,9 @@ function atualizarProdutos($pdo)
 {
     // Verifica se a requisição foi feita via POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!validarTokenCSRF($_POST['csrf_token'] ?? '')) {
+            die('Falha na verificação de segurança (CSRF).');
+    }
         // Pega os dados do formulário, incluindo o ID do produto
         $id = $_POST['id_produto'];
         $dadosProduto = [

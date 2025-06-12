@@ -28,6 +28,10 @@ function exibirFormularioCadastroCategoria($pdo)
 function salvarNovaCategoria($pdo)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!validarTokenCSRF($_POST['csrf_token'] ?? '')) {
+            die('Falha na verificação de segurança (CSRF).');
+        }
+
         $nomeCategoria = $_POST['nome_categoria'];
         cadastrarCategoria($pdo, $nomeCategoria);
         header('Location: ?page=categorias');
@@ -51,6 +55,10 @@ function exibirFormularioEdicaoCategoria($pdo)
 function atualizarCategoriaController($pdo)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!validarTokenCSRF($_POST['csrf_token'] ?? '')) {
+        die('Falha na verificação de segurança (CSRF).');
+    }
+    
         $id = $_POST['id_categoria'];
         $nomeCategoria = $_POST['nome_categoria'];
         atualizarCategoria($pdo, $id, $nomeCategoria);

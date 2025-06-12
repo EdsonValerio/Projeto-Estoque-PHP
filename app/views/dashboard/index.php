@@ -1,8 +1,14 @@
+<?php
+require_once 'app\controllers\Crsf.php';
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Painel - Controle de Estoque</title>
+   
 </head>
 <body>
     <h1>Painel de Controle</h1>

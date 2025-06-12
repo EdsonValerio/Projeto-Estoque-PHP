@@ -11,6 +11,7 @@
 
     <form action="?page=categorias_salvar" method="POST">
         <div>
+            <input type="hidden" name="csrf_token" value="<?= gerarTokenCSRF(); ?>">
             <label for="nome">Nome da Categoria:</label><br>
             <input type="text" id="nome" name="nome_categoria" required style="width: 300px;">
         </div>

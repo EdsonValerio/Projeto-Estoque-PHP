@@ -10,6 +10,7 @@
     <hr>
 
     <form action="?page=categorias_atualizar" method="POST">
+        <input type="hidden" name="csrf_token" value="<?= gerarTokenCSRF(); ?>">
         <input type="hidden" name="id_categoria" value="<?= $categoria['id_categoria'] ?>">
 
         <div>
