@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Painel - Controle de Estoque</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Painel de Controle</h1>
+    <div class="container">
+        <h1>Painel de Controle</h1>
 
-    <p>Bem-vindo(a), <?= htmlspecialchars($_SESSION['user_login']) ?>!</p>
+        <p style="font-size: 18px;">Bem-vindo(a), <strong><?= htmlspecialchars($_SESSION['user_login']) ?></strong>!</p>
 
-    <hr>
+        <nav>
+            <h3 style="border-bottom: 1px solid #4a8fdf; padding-bottom: 5px;">Gerenciar:</h3>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 10px;"><a href="?page=produtos" class="btn">Estoque de Produtos</a></li>
+                <li style="margin-bottom: 10px;"><a href="?page=categorias" class="btn">Categorias de Produtos</a></li>
+                <li style="margin-bottom: 10px;"><a href="?page=usuarios" class="btn">Usuários do Sistema</a></li>
+            </ul>
+        </nav>
 
-    <nav>
-        <h3>Gerenciar:</h3>
-        <ul>
-            <li><a href="?page=produtos">Estoque de Produtos</a></li>
-            <li><a href="?page=categorias">Categorias de Produtos</a></li>
-            <li><a href="?page=usuarios">Usuários do Sistema</a></li> </ul>
-    </nav>
-
-    <br>
-
-    <a href="?page=logout">Sair do Sistema</a>
+        <br>
+        <a href="?page=logout" style="color: #ff9d9d;">Sair do Sistema</a>
+    </div>
 </body>
 </html>

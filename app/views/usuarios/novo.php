@@ -3,51 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastrar Novo Usuário</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Cadastrar Novo Usuário</h1>
-    <a href="?page=usuarios">Voltar para a Lista</a>
-    <hr>
+    <div class="container">
+        <h1>Cadastrar Novo Usuário</h1>
 
-    <?php
-    if (isset($_GET['error'])) {
-        if ($_GET['error'] == 'empty_fields') {
-            echo '<p style="color:red;">Por favor, preencha todos os campos obrigatórios.</p>';
+        <?php
+        if (isset($_GET['error']) && $_GET['error'] == 'empty_fields') {
+            echo '<p style="color:#ff8e8e;">Por favor, preencha todos os campos obrigatórios.</p>';
         }
-    }
-    ?>
+        ?>
 
-    <form action="?page=usuarios_salvar" method="POST">
-        <div>
-            <label for="nome_completo">Nome Completo:</label><br>
-            <input type="text" id="nome_completo" name="nome_completo" required style="width: 300px;">
-        </div>
-        <br>
-        <div>
-            <label for="login">Login (Usuário):</label><br>
-            <input type="text" id="login" name="login" required style="width: 300px;">
-        </div>
-        <br>
-        <div>
-            <label for="senha">Senha:</label><br>
-            <input type="password" id="senha" name="senha" required style="width: 300px;">
-        </div>
-        <br>
-        <div>
-            <label for="nivel_acesso">Nível de Acesso:</label><br>
-            <select id="nivel_acesso" name="nivel_acesso" required>
-                <option value="">Selecione o nível</option>
-                <?php
-                foreach ($niveisAcesso as $valor => $nome) {
-                    echo "<option value='" . htmlspecialchars($valor) . "'>" . htmlspecialchars($nome) . "</option>";
-                }
-                ?>
-            </select>
-        </div>
-        <br>
-        <div>
-            <button type="submit">Salvar Usuário</button>
-        </div>
-    </form>
+        <form action="?page=usuarios_salvar" method="POST">
+            <div>
+                <label for="nome_completo">Nome Completo:</label>
+                <input type="text" id="nome_completo" name="nome_completo" required>
+            </div>
+            <br>
+            <div>
+                <label for="login">Login (Usuário):</label>
+                <input type="text" id="login" name="login" required>
+            </div>
+            <br>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+            </div>
+            <br>
+            <div>
+                <label for="nivel_acesso">Nível de Acesso:</label>
+                <select id="nivel_acesso" name="nivel_acesso" required>
+                    <option value="">Selecione o nível</option>
+                    <?php
+                    foreach ($niveisAcesso as $valor => $nome) {
+                        echo "<option value='" . htmlspecialchars($valor) . "'>" . htmlspecialchars($nome) . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <br>
+            <div>
+                <button type="submit">Salvar Usuário</button>
+                <a href="?page=usuarios" class="btn" style="background: linear-gradient(to bottom, #ccc, #999);">Voltar para a Lista</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

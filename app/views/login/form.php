@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Controle de Estoque</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="login-container">
+    <div class="container" style="max-width: 400px;">
         <h1>Acessar o Sistema</h1>
         
         <?php
