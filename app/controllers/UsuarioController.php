@@ -60,6 +60,9 @@ function exibirFormularioCadastroUsuario($pdo)
 function salvarNovoUsuario($pdo)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!validarTokenCSRF($_POST['csrf_token'] ?? '')) {
+            die('Falha na verificação de segurança (CSRF).');
+    }
         $dadosUsuario = [
             'nome_completo' => trim($_POST['nome_completo']),
             'login' => trim($_POST['login']),
@@ -99,6 +102,9 @@ function exibirFormularioEdicaoUsuario($pdo)
 function atualizarUsuarioController($pdo)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!validarTokenCSRF($_POST['csrf_token'] ?? '')) {
+            die('Falha na verificação de segurança (CSRF).');
+    }
         $id = $_POST['id_usuario'];
         $dadosParaAtualizar = [
             'nome_completo' => trim($_POST['nome_completo']),

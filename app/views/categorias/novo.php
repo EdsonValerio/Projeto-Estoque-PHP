@@ -8,11 +8,14 @@
 <body>
     <div class="container">
         <h1>Cadastrar Nova Categoria</h1>
-        
+        <a href="?page=categorias">Voltar para a Lista</a>
+        <hr>
+
         <form action="?page=categorias_salvar" method="POST">
+            <input type="hidden" name="csrf_token" value="<?= gerarTokenCSRF(); ?>">
             <div>
-                <label for="nome">Nome da Categoria:</label>
-                <input type="text" id="nome" name="nome_categoria" required>
+                <label for="nome">Nome da Categoria:</label><br>
+                <input type="text" id="nome" name="nome_categoria" required style="width: 300px;">
             </div>
             <br>
             <div>
