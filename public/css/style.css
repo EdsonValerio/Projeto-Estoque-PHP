@@ -1,0 +1,158 @@
+body {
+    background-color: #001e4e; /* Fundo azul escuro, similar ao padrão do Vista */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- Container Principal (Efeito de Janela) --- */
+.container {
+    background: rgba(22, 42, 69, 0.8); /* Fundo da "janela" com transparência */
+    border: 1px solid #70a1d0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); /* Efeito de vidro desfocado */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* --- Títulos (Barra de Título da Janela) --- */
+h1 {
+    font-size: 24px;
+    color: #fff;
+    background: linear-gradient(to bottom, rgba(125, 185, 232, 0.5), rgba(47, 130, 224, 0.2));
+    padding: 10px 15px;
+    margin: -20px -20px 20px -20px; /* Estica para preencher o topo do container */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid #70a1d0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Botões (Estilo Aero) --- */
+button, .btn {
+    background: linear-gradient(to bottom, #8bc3f7, #4a8fdf);
+    border: 1px solid #3c7fcf;
+    border-radius: 4px;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn:hover {
+    background: linear-gradient(to bottom, #a1d3f9, #6aa9e9);
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.7); /* Efeito de brilho */
+}
+
+/* --- Tabelas de Dados --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    overflow: hidden; /* Garante que o border-radius aplique nos cantos */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #4a8fdf;
+}
+
+th {
+    background-color: rgba(74, 143, 223, 0.5);
+    font-size: 16px;
+}
+
+tbody tr:hover {
+    background-color: rgba(74, 143, 223, 0.3);
+}
+
+/* --- Formulários --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #5a9fef;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    box-sizing: border-box; /* Garante que padding não afete a largura total */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(139, 195, 247, 0.8);
+}
+
+/* --- Links --- */
+a {
+    color: #8bc3f7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Links em tabelas para ações */
+table a {
+    color: #a1d3f9;
+    font-weight: bold;
+}
+
+/* --- Estilos do Header de Navegação --- */
+.main-header {
+    background: rgba(10, 25, 47, 0.8);
+    border-bottom: 1px solid #70a1d0;
+    padding: 10px 40px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.main-nav a:hover {
+    background-color: rgba(74, 143, 223, 0.3);
+    text-decoration: none;
+}
+
+/* --- Estilos do Footer --- */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #a1d3f9;
+    font-size: 14px;
+}
