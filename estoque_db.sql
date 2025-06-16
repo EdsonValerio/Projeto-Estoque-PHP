@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/06/2025 às 23:28
+-- Tempo de geração: 16/06/2025 às 21:01
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -77,6 +77,8 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `nome_completo` varchar(255) NOT NULL,
   `login` varchar(100) NOT NULL,
+  `cpf` varchar(14) DEFAULT NULL,
+  `data_nascimento` date DEFAULT NULL,
   `senha_hash` varchar(255) NOT NULL,
   `nivel_acesso` int(11) NOT NULL DEFAULT 1 COMMENT '1: Funcionario, 2: Dono, 3: Admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -85,8 +87,10 @@ CREATE TABLE `usuarios` (
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nome_completo`, `login`, `senha_hash`, `nivel_acesso`) VALUES
-(1, 'Administrador do Sistema', 'admin', '$2y$10$gg9bTZ8CppQsZgaKpaJXOefWyd5lpywM4WYMi6C8NQBit912bETTe', 3);
+INSERT INTO `usuarios` (`id_usuario`, `nome_completo`, `login`, `cpf`, `data_nascimento`, `senha_hash`, `nivel_acesso`) VALUES
+(1, 'Administrador do Sistema', 'admin', NULL, NULL, '$2y$10$gg9bTZ8CppQsZgaKpaJXOefWyd5lpywM4WYMi6C8NQBit912bETTe', 3),
+(3, 'Gabriel Henrique', 'gabriel', '012.345.678-90', '2003-12-09', '$2y$10$yyyDr9uTYGX6MDgJg4L36OxKTDMqdpdpzin0kL5/FThoa69LhgTNW', 1),
+(7, 'Edson Veloso', 'edson', '012.345.678-91', '2025-06-15', '$2y$10$.AI3gJWjZrqK3d7qLyjAgufG/G26AABf15gq9xzrlP7jb0ZdlrCU.', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -111,7 +115,8 @@ ALTER TABLE `produtos`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `login` (`login`);
+  ADD UNIQUE KEY `login` (`login`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -133,7 +138,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restrições para tabelas despejadas

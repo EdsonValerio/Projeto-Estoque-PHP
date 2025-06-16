@@ -1,5 +1,4 @@
 <?php
-// Arquivo: app/controllers/Crsf.php
 
 function gerarTokenCSRF() {
     if (empty($_SESSION['csrf_token'])) {

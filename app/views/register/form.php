@@ -12,7 +12,6 @@
         <br>
 
         <?php
-        // Bloco para exibir mensagens de erro, se houver
         if (isset($_GET['error'])) {
             $error_msg = '';
             if ($_GET['error'] == 'empty') {

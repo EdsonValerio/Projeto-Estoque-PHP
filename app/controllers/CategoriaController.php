@@ -1,30 +1,18 @@
 <?php
 
-// Arquivo: app/controllers/CategoriaController.php
-
-// Inclui o Model de Categoria
 require_once BASE_PATH . '/app/models/CategoriaModel.php';
 
-/**
- * Exibe a página de listagem de categorias.
- */
 function listarCategorias($pdo)
 {
     $listaDeCategorias = listarTodasCategorias($pdo);
     require_once VIEW_PATH . 'categorias/listar.php';
 }
 
-/**
- * Exibe o formulário para cadastrar uma nova categoria.
- */
 function exibirFormularioCadastroCategoria($pdo)
 {
     require_once VIEW_PATH . 'categorias/novo.php';
 }
 
-/**
- * Recebe os dados do formulário e salva a nova categoria.
- */
 function salvarNovaCategoria($pdo)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,9 +27,6 @@ function salvarNovaCategoria($pdo)
     }
 }
 
-/**
- * Exibe o formulário para editar uma categoria existente.
- */
 function exibirFormularioEdicaoCategoria($pdo)
 {
     $id = $_GET['id'];
@@ -49,9 +34,6 @@ function exibirFormularioEdicaoCategoria($pdo)
     require_once VIEW_PATH . 'categorias/editar.php';
 }
 
-/**
- * Recebe os dados do formulário de edição e atualiza a categoria.
- */
 function atualizarCategoriaController($pdo)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -67,9 +49,6 @@ function atualizarCategoriaController($pdo)
     }
 }
 
-/**
- * Processa a requisição de exclusão de uma categoria.
- */
 function excluirCategoriaController($pdo)
 {
     $id = $_GET['id'];
